@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { API_BASE } from "../config";
 
 export default function TrackOrder() {
   const [orderId, setOrderId] = useState("");
@@ -10,7 +11,7 @@ export default function TrackOrder() {
     setError("");
     setOrder(null);
     try {
-      const res = await fetch(`/api/orders/${orderId}`);
+      const res = await fetch(`${API_BASE}/api/orders/${orderId}`);
       const data = await res.json();
       if (!res.ok) throw new Error(data?.message || `HTTP ${res.status}`);
       setOrder(data);
@@ -26,7 +27,10 @@ export default function TrackOrder() {
       const fd = new FormData();
       fd.append("slip", file);
 
-      const res = await fetch(`/api/orders/${orderId}/slip`, { method: "POST", body: fd });
+      const res = await fetch(`${API_BASE}/api/orders/${orderId}/slip`, {
+        method: "POST",
+        body: fd,
+      });
       const data = await res.json();
       if (!res.ok) throw new Error(data?.message || `HTTP ${res.status}`);
 
@@ -72,7 +76,7 @@ export default function TrackOrder() {
           {order.slipUrl && (
             <div style={{ marginTop: 10 }}>
               Slip:{" "}
-              <a href={`http://localhost:4000${order.slipUrl}`} target="_blank" rel="noreferrer">
+              <a href={`${API_BASE}${order.slipUrl}`} target="_blank" rel="noreferrer">
                 view
               </a>
             </div>

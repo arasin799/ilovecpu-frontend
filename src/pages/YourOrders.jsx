@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getToken, clearToken } from "../authStore";
 import { Link, useNavigate } from "react-router-dom";
+import { API_BASE } from "../config";
 
 const STATUS_LABEL = {
   PENDING_PAYMENT: "รอชำระเงิน",
@@ -19,7 +20,7 @@ export default function YourOrders() {
   async function loadOrders() {
     setError("");
     try {
-      const res = await fetch("/api/my/orders", {
+      const res = await fetch(`${API_BASE}/api/my/orders`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       });
 

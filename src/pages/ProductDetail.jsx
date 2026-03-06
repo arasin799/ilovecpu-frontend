@@ -4,6 +4,7 @@ import HomeHeader from "../components/home/HomeHeader";
 import HomeFooter from "../components/home/HomeFooter";
 import "../styles/home.css";
 import "../styles/product-detail.css";
+import { API_BASE } from "../config";
 
 const mockSpecsByCategory = {
   NOTEBOOK: [
@@ -98,8 +99,8 @@ export default function ProductDetail({ cart, setCart }) {
       setError("");
       try {
         const [productRes, allRes] = await Promise.all([
-          fetch(`/api/products/${id}`),
-          fetch("/api/products"),
+          fetch(`${API_BASE}/api/products/${id}`),
+          fetch(`${API_BASE}/api/products`),
         ]);
 
         const productData = await productRes.json();

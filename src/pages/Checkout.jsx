@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getToken, clearToken } from "../authStore";
+import { API_BASE } from "../config";
 
 export default function Checkout({ cart, setCart }) {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ export default function Checkout({ cart, setCart }) {
     (async () => {
       try {
         setLoadingProducts(true);
-        const res = await fetch("/api/products");
+        const res = await fetch(`${API_BASE}/api/products`);
         const data = await res.json();
         setProducts(Array.isArray(data) ? data : []);
       } finally {
@@ -80,7 +81,7 @@ export default function Checkout({ cart, setCart }) {
         items: cart.map((x) => ({ productId: x.productId, qty: x.qty })),
       };
 
-      const res = await fetch("/api/orders", {
+      const res = await fetch(`${API_BASE}/api/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

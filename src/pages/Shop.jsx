@@ -4,6 +4,7 @@ import BannerSection from "../components/home/BannerSection";
 import ProductSection from "../components/home/ProductSection";
 import HomeFooter from "../components/home/HomeFooter";
 import "../styles/home.css";
+import { API_BASE } from "../config";
 import HorizontalProductSection from "../components/home/HorizontalProductSection";
 
 const notebookBrands = ["ACER", "ASUS", "GIGABYTE", "LENOVO", "MSI", "HP"];
@@ -33,12 +34,19 @@ export default function Shop({ cart, setCart }) {
 
     try {
       const url = query
-        ? `/api/products?q=${encodeURIComponent(query)}`
-        : "/api/products";
+        ? `${API_BASE}/api/products?q=${encodeURIComponent(query)}`
+        : `${API_BASE}/api/products`;
 
       const res = await fetch(url);
-      const data = await res.json();
+      const text = await res.text();
+      console.log("API response:", text);
 
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        throw new Error(`Expected JSON but got: ${text.slice(0, 120)}`);
+      }
       if (!res.ok) throw new Error(data?.message || `HTTP ${res.status}`);
       setProducts(Array.isArray(data) ? data : []);
     } catch (e) {

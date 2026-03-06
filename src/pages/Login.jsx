@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { setToken } from "../authStore";
 import { useNavigate } from "react-router-dom";
+import { API_BASE } from "../config";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -13,7 +14,9 @@ export default function Login() {
     setError("");
     try {
       const res = await fetch(
-        mode === "login" ? "/api/auth/login" : "/api/auth/register",
+        mode === "login"
+          ? `${API_BASE}/api/auth/login`
+          : `${API_BASE}/api/auth/register`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

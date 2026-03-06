@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { getToken, clearToken } from "../authStore";
+import { API_BASE } from "../config";
 
 const STATUS_LABEL = {
   PENDING_PAYMENT: "รอชำระเงิน",
@@ -31,7 +32,7 @@ export default function OrderDetail() {
         return;
       }
 
-      const res = await fetch(`/api/my/orders/${id}`, {
+      const res = await fetch(`${API_BASE}/api/my/orders/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -52,7 +53,7 @@ export default function OrderDetail() {
 
   async function loadProducts() {
     try {
-      const res = await fetch("/api/products");
+      const res = await fetch(`${API_BASE}/api/products`);
       const data = await res.json();
       setProducts(Array.isArray(data) ? data : []);
     } catch {
@@ -80,7 +81,7 @@ export default function OrderDetail() {
       const fd = new FormData();
       fd.append("slip", file);
 
-      const res = await fetch(`/api/my/orders/${id}/slip`, {
+      const res = await fetch(`${API_BASE}/api/my/orders/${id}/slip`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: fd,
@@ -151,7 +152,7 @@ export default function OrderDetail() {
       {order.slipUrl && (
         <div style={{ marginTop: 10 }}>
           Slip:{" "}
-          <a href={`http://localhost:4000${order.slipUrl}`} target="_blank" rel="noreferrer">
+          <a href={`${API_BASE}${order.slipUrl}`} target="_blank" rel="noreferrer">
             view
           </a>
         </div>
