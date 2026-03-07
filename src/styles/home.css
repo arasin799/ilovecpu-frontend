@@ -4,16 +4,23 @@
 
 .home-header {
   overflow: hidden;
-  border-radius: 14px;
+  border-radius: 18px;
   background: #6A1B9A;
-  box-shadow: 0 8px 24px rgba(106, 27, 154, 0.22);
+  box-shadow: 0 8px 24px rgba(106, 27, 154, 0.18);
+}
+
+.home-header-top {
+  display: grid;
+  grid-template-columns: 210px 1fr 180px;
+  align-items: center;
+  gap: 22px;
+  padding: 18px 22px;
 }
 
 .home-logo-box {
   position: relative;
-  width: 220px;
-  height: 110px;
-  border-radius: 0;
+  width: 180px;
+  height: 82px;
   background: #6A1B9A;
   overflow: hidden;
   display: flex;
@@ -24,7 +31,7 @@
 .home-logo-circuit {
   position: absolute;
   inset: 0;
-  opacity: 0.45;
+  opacity: 0.4;
 }
 
 .home-logo-circuit .line {
@@ -35,21 +42,21 @@
 }
 
 .home-logo-circuit .line-1 {
-  width: 130px;
+  width: 110px;
   left: -8px;
-  top: 52px;
+  top: 40px;
 }
 
 .home-logo-circuit .line-2 {
-  width: 170px;
+  width: 140px;
   left: -8px;
-  top: 72px;
+  top: 58px;
 }
 
 .home-logo-circuit .line-3 {
-  width: 145px;
+  width: 125px;
   left: 18px;
-  top: 30px;
+  top: 24px;
 }
 
 .home-logo-circuit .dot {
@@ -61,96 +68,106 @@
 }
 
 .home-logo-circuit .dot-1 {
-  left: 120px;
-  top: 47px;
+  left: 98px;
+  top: 35px;
 }
 
 .home-logo-circuit .dot-2 {
-  left: 160px;
-  top: 67px;
+  left: 132px;
+  top: 53px;
 }
 
 .home-logo-circuit .dot-3 {
-  left: 178px;
-  top: 25px;
+  left: 145px;
+  top: 19px;
 }
 
 .home-logo-text {
   position: relative;
   z-index: 2;
-  line-height: 0.82;
+  line-height: 0.84;
   text-transform: uppercase;
   font-weight: 900;
   font-family: Arial, Helvetica, sans-serif;
-  transform: translateY(-2px);
 }
 
 .logo-row-top {
   display: flex;
   align-items: baseline;
-  gap: 6px;
+  gap: 4px;
 }
 
 .logo-i {
-  font-size: 56px;
+  font-size: 42px;
   color: #F6D54A;
-  text-shadow: 4px 4px 0 #8a5e00;
+  text-shadow: 3px 3px 0 #8a5e00;
 }
 
 .logo-love {
-  font-size: 56px;
+  font-size: 42px;
   color: #ffffff;
-  text-shadow: 4px 4px 0 #9c7ab5;
+  text-shadow: 3px 3px 0 #9c7ab5;
 }
 
 .logo-row-bottom {
-  font-size: 68px;
+  font-size: 50px;
   color: #F6D54A;
-  text-shadow: 4px 4px 0 #8a5e00;
+  text-shadow: 3px 3px 0 #8a5e00;
+}
+
+.home-search {
+  width: 100%;
 }
 
 .home-search input {
   width: 100%;
-  height: 52px;
+  height: 56px;
   border: none;
   outline: none;
   border-radius: 999px;
-  padding: 0 22px;
+  padding: 0 24px;
   font-size: 17px;
-  background: #fff;
+  background: #ffffff;
   color: #222;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.home-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
 }
 
 .icon-btn {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   border: none;
   border-radius: 999px;
   background: #F3E5F5;
-  cursor: pointer;
-  font-size: 20px;
+  color: #6A1B9A;
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1;
+  font-size: 22px;
+  cursor: pointer;
   padding: 0;
-  color: #6A1B9A;
 }
 
 .cart-badge {
-  padding: 10px 16px;
+  padding: 12px 18px;
   border-radius: 999px;
   background: #AB47BC;
   color: #fff;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .home-header-menu {
-  display: flex;
-  gap: 18px;
-  justify-content: space-between;
-  padding: 12px 22px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  padding: 0 22px;
+  min-height: 64px;
   background: #D1B3E0;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 }
@@ -160,7 +177,41 @@
   background: transparent;
   color: #3f2455;
   font-weight: 700;
+  font-size: 16px;
   cursor: pointer;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .home-header-top {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .home-logo-box {
+    width: 150px;
+    height: 72px;
+  }
+
+  .logo-i,
+  .logo-love {
+    font-size: 34px;
+  }
+
+  .logo-row-bottom {
+    font-size: 42px;
+  }
+
+  .home-header-actions {
+    justify-content: flex-start;
+  }
+
+  .home-header-menu {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 12px 16px;
+    min-height: auto;
+  }
 }
 
 .banner-section {
