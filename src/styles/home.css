@@ -511,3 +511,13 @@
     grid-template-columns: 1fr;
   }
 }
+
+.shop-thumb,
+.shop-product-name,
+.shop-thumb:visited,
+.shop-product-name:visited,
+.shop-thumb:hover,
+.shop-product-name:hover {
+  color: inherit;
+  text-decoration: none;
+}
