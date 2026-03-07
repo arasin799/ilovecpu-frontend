@@ -1,3 +1,18 @@
+body {
+  font-family: "Prompt", sans-serif;
+}
+
+.section-head h2,
+.section-accent-title,
+.category-sidebar h3,
+.footer-column h4,
+.detail-title,
+.specs-section h2,
+.reviews-section h2,
+.related-section h2 {
+  font-family: "Mitr", sans-serif;
+}
+
 .home-page {
   padding-bottom: 40px;
 }
