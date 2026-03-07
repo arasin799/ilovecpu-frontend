@@ -294,22 +294,38 @@ body {
 
 .section-head h2 {
   margin: 0;
+  font-size: 34px;
+  color: #111;
+  font-weight: 900;
   line-height: 1;
-}
-
-.section-head h2.purple {
-  color: #7b1fa2;
 }
 
 .section-head button {
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+  color: #111;
   margin: 0;
   line-height: 1;
-  align-self: center;
 }
 
-.section-head,
-.section-head.no-title {
-  min-height: 42px;
+.section-accent-title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 900;
+  color: #7f2fa3;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.accent-head {
+  margin-bottom: 16px;
+}
+
+.sub-accent-title {
+  margin-bottom: 14px;
 }
 
 .section-layout {

@@ -17,8 +17,8 @@ export default function ProductSection({
           <button type="button">ดูทั้งหมด &gt;</button>
         </div>
       ) : (
-        <div className="section-head no-title">
-          <div />
+        <div className="section-head accent-head">
+          <h2 className="section-accent-title">{accentTitle}</h2>
           <button type="button">ดูทั้งหมด &gt;</button>
         </div>
       )}
@@ -27,7 +27,9 @@ export default function ProductSection({
         <CategorySidebar title={sideTitle} items={sideItems} />
 
         <div className="product-area">
-          {accentTitle && <div className="section-accent-title">{accentTitle}</div>}
+          {title && accentTitle && (
+            <div className="section-accent-title sub-accent-title">{accentTitle}</div>
+          )}
 
           <div className="product-grid product-grid-three">
             {products.map((product) => (
