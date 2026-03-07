@@ -7,6 +7,7 @@ import HomeFooter from "../components/home/HomeFooter";
 import { API_BASE } from "../config";
 import "../styles/home.css";
 
+
 const notebookBrands = [
   { label: "ACER", mark: "acer", className: "brand-acer" },
   { label: "ASUS", mark: "ASUS", className: "brand-asus" },
@@ -115,7 +116,6 @@ export default function Shop({ cart, setCart }) {
       {!loading && !error && (
         <>
           <ProductSection
-            title=""
             sideTitle="โน้ตบุ๊ค"
             sideItems={notebookBrands}
             products={showNotebook}
