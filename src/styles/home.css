@@ -409,47 +409,68 @@
 }
 
 .shop-card {
-  min-height: 388px;
-  padding: 14px 14px 18px;
-  border-radius: 4px;
-  background: #fff;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  min-height: 410px;
+  padding: 16px 16px 18px;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.10);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.shop-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.14);
+}
+
+.shop-card .add-cart-btn {
+  display: none;
 }
 
 .shop-thumb {
-  height: 190px;
-  border-radius: 0;
-  background: #f5f5f5;
+  height: 170px;
+  border-radius: 10px;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  text-decoration: none;
 }
 
 .shop-thumb img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  display: block;
 }
 
 .shop-product-name {
-  margin-top: 16px;
-  min-height: 76px;
-  color: #3b3140;
+  margin-top: 14px;
+  min-height: 72px;
+  color: #2f2a33;
   font-weight: 800;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.35;
   text-transform: uppercase;
+  text-decoration: none;
 }
 
 .shop-product-price {
-  margin-top: 8px;
-  font-size: 18px;
+  margin-top: 10px;
+  font-size: 17px;
   font-weight: 900;
   color: #4b414f;
 }
 
-.shop-card .add-cart-btn {
-  display: none;
+.shop-thumb,
+.shop-product-name,
+.shop-thumb:visited,
+.shop-product-name:visited,
+.shop-thumb:hover,
+.shop-product-name:hover {
+  color: inherit;
+  text-decoration: none;
 }
 
 .section-head {
@@ -512,12 +533,15 @@
   }
 }
 
-.shop-thumb,
-.shop-product-name,
-.shop-thumb:visited,
-.shop-product-name:visited,
-.shop-thumb:hover,
-.shop-product-name:hover {
-  color: inherit;
-  text-decoration: none;
+.product-grid-three {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px 32px;
+}
+
+.category-sidebar {
+  padding: 28px 0 22px;
+  border-radius: 30px;
+  background: #f2eef5;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.10);
 }
