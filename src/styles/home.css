@@ -9,27 +9,104 @@
   box-shadow: 0 8px 24px rgba(106, 27, 154, 0.22);
 }
 
-.home-header-top {
-  display: grid;
-  grid-template-columns: 180px 1fr 180px;
+.home-logo-box {
+  position: relative;
+  width: 220px;
+  height: 110px;
+  border-radius: 0;
+  background: #6A1B9A;
+  overflow: hidden;
+  display: flex;
   align-items: center;
-  gap: 18px;
-  padding: 18px 22px;
+  justify-content: center;
 }
 
-.home-logo {
-  color: #ffd54f;
+.home-logo-circuit {
+  position: absolute;
+  inset: 0;
+  opacity: 0.45;
+}
+
+.home-logo-circuit .line {
+  position: absolute;
+  height: 3px;
+  background: #9c6cc2;
+  border-radius: 999px;
+}
+
+.home-logo-circuit .line-1 {
+  width: 130px;
+  left: -8px;
+  top: 52px;
+}
+
+.home-logo-circuit .line-2 {
+  width: 170px;
+  left: -8px;
+  top: 72px;
+}
+
+.home-logo-circuit .line-3 {
+  width: 145px;
+  left: 18px;
+  top: 30px;
+}
+
+.home-logo-circuit .dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #9c6cc2;
+  border-radius: 50%;
+}
+
+.home-logo-circuit .dot-1 {
+  left: 120px;
+  top: 47px;
+}
+
+.home-logo-circuit .dot-2 {
+  left: 160px;
+  top: 67px;
+}
+
+.home-logo-circuit .dot-3 {
+  left: 178px;
+  top: 25px;
+}
+
+.home-logo-text {
+  position: relative;
+  z-index: 2;
+  line-height: 0.82;
+  text-transform: uppercase;
   font-weight: 900;
-  line-height: 0.9;
-  text-shadow: 1px 1px 0 #4a148c;
+  font-family: Arial, Helvetica, sans-serif;
+  transform: translateY(-2px);
 }
 
-.home-logo-top {
-  font-size: 32px;
+.logo-row-top {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
 }
 
-.home-logo-bottom {
-  font-size: 42px;
+.logo-i {
+  font-size: 56px;
+  color: #F6D54A;
+  text-shadow: 4px 4px 0 #8a5e00;
+}
+
+.logo-love {
+  font-size: 56px;
+  color: #ffffff;
+  text-shadow: 4px 4px 0 #9c7ab5;
+}
+
+.logo-row-bottom {
+  font-size: 68px;
+  color: #F6D54A;
+  text-shadow: 4px 4px 0 #8a5e00;
 }
 
 .home-search input {
@@ -45,32 +122,26 @@
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
-.home-header-actions {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 12px;
-}
-
 .icon-btn {
   width: 48px;
   height: 48px;
   border: none;
   border-radius: 999px;
-  background: #f3e5f5;
+  background: #F3E5F5;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
   padding: 0;
+  color: #6A1B9A;
 }
 
 .cart-badge {
-  padding: 10px 14px;
+  padding: 10px 16px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.18);
+  background: #AB47BC;
   color: #fff;
   font-weight: 700;
 }
@@ -80,13 +151,14 @@
   gap: 18px;
   justify-content: space-between;
   padding: 12px 22px;
-  background: #E1BEE7;
+  background: #D1B3E0;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
 .home-header-menu button {
   border: none;
   background: transparent;
-  color: #3D333E;
+  color: #3f2455;
   font-weight: 700;
   cursor: pointer;
 }
