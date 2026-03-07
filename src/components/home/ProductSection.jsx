@@ -11,10 +11,17 @@ export default function ProductSection({
 }) {
   return (
     <section className="product-section">
-      <div className="section-head">
-        <h2>{title}</h2>
-        <button type="button">ดูทั้งหมด &gt;</button>
-      </div>
+      {title ? (
+        <div className="section-head">
+          <h2>{title}</h2>
+          <button type="button">ดูทั้งหมด &gt;</button>
+        </div>
+      ) : (
+        <div className="section-head no-title">
+          <div />
+          <button type="button">ดูทั้งหมด &gt;</button>
+        </div>
+      )}
 
       <div className="section-layout">
         <CategorySidebar title={sideTitle} items={sideItems} />

@@ -115,7 +115,7 @@ export default function Shop({ cart, setCart }) {
       {!loading && !error && (
         <>
           <ProductSection
-            title="โน้ตบุ๊ค"
+            title=""
             sideTitle="โน้ตบุ๊ค"
             sideItems={notebookBrands}
             products={showNotebook}

@@ -459,6 +459,9 @@
   margin-bottom: 16px;
 }
 
+.section-head h2:empty {
+  display: none;
+}
 .section-head h2 {
   margin: 0;
   font-size: 34px;
