@@ -106,21 +106,23 @@
   justify-content: center;
   font-size: 28px;
   font-weight: 900;
-  color: #fff;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 10px 24px rgba(106, 27, 154, 0.12);
+  border: 1px solid rgba(106, 27, 154, 0.08);
 }
 
 .banner-dark {
-  background: linear-gradient(135deg, #111, #2e2e2e);
+  background: linear-gradient(135deg, #6A1B9A, #AB47BC);
+  color: #ffffff;
 }
 
 .banner-light {
-  background: linear-gradient(135deg, #dce5ff, #b6c4ff);
-  color: #3b2c7a;
+  background: linear-gradient(135deg, #F3E5F5, #E1BEE7);
+  color: #6A1B9A;
 }
 
 .banner-red {
-  background: linear-gradient(135deg, #261111, #571818);
+  background: linear-gradient(135deg, #D9D9D9, #E1BEE7);
+  color: #6A1B9A;
 }
 
 .product-section {
