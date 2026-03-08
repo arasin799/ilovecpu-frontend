@@ -249,6 +249,11 @@
   padding-right: 56px;
 }
 
+.login-secret-wrap input[type="password"]::-ms-reveal,
+.login-secret-wrap input[type="password"]::-ms-clear {
+  display: none;
+}
+
 .login-toggle-secret {
   position: absolute;
   right: 8px;
