@@ -113,10 +113,9 @@ export default function Profile({ cart = [] }) {
       />
 
       <main className="profile-main">
-        {loading && <p className="profile-info">กำลังโหลดข้อมูล...</p>}
         {error && <p className="profile-error">{error}</p>}
 
-        {!loading && !error && (
+        {!error && (
           <section className="profile-layout">
             <div className="profile-side-column">
               <aside className="profile-side-card">
