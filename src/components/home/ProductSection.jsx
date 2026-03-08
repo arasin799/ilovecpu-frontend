@@ -7,11 +7,19 @@ export default function ProductSection({
   products = [],
   onAddToCart,
   accentTitle,
+  activeSideKey,
+  onSelectSideItem,
+  emptyText = "ไม่มีสินค้า",
 }) {
   return (
     <section className="product-section">
       <div className="section-layout">
-        <CategorySidebar title={sideTitle} items={sideItems} />
+        <CategorySidebar
+          title={sideTitle}
+          items={sideItems}
+          activeKey={activeSideKey}
+          onSelect={onSelectSideItem}
+        />
 
         <div className="product-area">
           <div className="product-area-head">
@@ -20,13 +28,17 @@ export default function ProductSection({
           </div>
 
           <div className="product-grid product-grid-three">
-            {products.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onAddToCart={onAddToCart}
-              />
-            ))}
+            {products.length ? (
+              products.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onAddToCart={onAddToCart}
+                />
+              ))
+            ) : (
+              <div className="product-empty">{emptyText}</div>
+            )}
           </div>
         </div>
       </div>

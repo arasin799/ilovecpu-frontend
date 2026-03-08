@@ -236,17 +236,19 @@ export default function ProductDetail({ cart, setCart }) {
             <button
               type="button"
               className="qty-btn"
+              aria-label="Decrease quantity"
               onClick={() => setQty((v) => Math.max(1, v - 1))}
             >
-              -
+              <span className="qty-icon qty-icon-minus" aria-hidden="true" />
             </button>
             <div className="qty-value">{qty}</div>
             <button
               type="button"
               className="qty-btn"
+              aria-label="Increase quantity"
               onClick={() => setQty((v) => Math.min(product.stock || 99, v + 1))}
             >
-              +
+              <span className="qty-icon qty-icon-plus" aria-hidden="true" />
             </button>
           </div>
 
@@ -262,7 +264,7 @@ export default function ProductDetail({ cart, setCart }) {
       </section>
 
       <section className="specs-section">
-        <h2>คุณสมบัติสินค้า</h2>
+        <h2>คุณสมบัติ</h2>
 
         <div className="specs-card">
           {specs.map(([label, value]) => (
@@ -276,7 +278,7 @@ export default function ProductDetail({ cart, setCart }) {
 
       <section className="reviews-section">
         <div className="review-header">
-          <h2>รีวิวจากลูกค้า</h2>
+          <h2>รีวิว</h2>
           <button type="button">ทั้งหมด &gt;</button>
         </div>
 

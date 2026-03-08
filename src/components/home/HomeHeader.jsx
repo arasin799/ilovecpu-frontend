@@ -1,4 +1,8 @@
+import { Link, useNavigate } from "react-router-dom";
+
 export default function HomeHeader({ q, setQ, onSearch, cartCount = 0 }) {
+  const navigate = useNavigate();
+
   return (
     <header className="home-header">
       <div className="home-header-top">
@@ -34,13 +38,17 @@ export default function HomeHeader({ q, setQ, onSearch, cartCount = 0 }) {
         </div>
 
         <div className="home-header-actions">
-          <button className="icon-btn" type="button">👤</button>
-          <div className="cart-badge">Cart ({cartCount})</div>
+          <button className="icon-btn" type="button" onClick={() => navigate("/profile")}>
+            👤
+          </button>
+          <Link to="/checkout" className="cart-badge">
+            Cart ({cartCount})
+          </Link>
         </div>
       </div>
 
       <div className="home-header-menu">
-        <button type="button">หน้าแรก</button>
+        <button type="button" onClick={() => navigate("/")}>หน้าแรก</button>
         <button type="button">จัดสเปกคอม</button>
         <button type="button">เกี่ยวกับเรา</button>
         <button type="button" onClick={onSearch}>หมวดหมู่สินค้า</button>
