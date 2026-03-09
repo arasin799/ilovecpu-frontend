@@ -6,6 +6,48 @@ import "../styles/home.css";
 import "../styles/product-detail.css";
 import { API_BASE } from "../config";
 
+function resolveImageUrl(imageUrl) {
+  if (!imageUrl) return null;
+  if (
+    imageUrl.startsWith("http://") ||
+    imageUrl.startsWith("https://") ||
+    imageUrl.startsWith("data:") ||
+    imageUrl.startsWith("blob:")
+  ) {
+    return imageUrl;
+  }
+  return imageUrl.startsWith("/") ? `${API_BASE}${imageUrl}` : `${API_BASE}/${imageUrl}`;
+}
+
+function SafeProductImage({ imageUrl, alt, placeholderClassName }) {
+  const [isError, setIsError] = useState(false);
+  const resolvedSrc = useMemo(() => resolveImageUrl(imageUrl), [imageUrl]);
+
+  useEffect(() => {
+    setIsError(false);
+  }, [resolvedSrc]);
+
+  if (!resolvedSrc || isError) {
+    return <div className={placeholderClassName}>IMG</div>;
+  }
+
+  return <img src={resolvedSrc} alt={alt} onError={() => setIsError(true)} />;
+}
+
+function normalizeProductSpecs(specs) {
+  if (!Array.isArray(specs)) return [];
+
+  return specs
+    .map((item) => {
+      if (Array.isArray(item)) {
+        return [String(item[0] || "").trim(), String(item[1] || "").trim()];
+      }
+
+      return [String(item?.label || "").trim(), String(item?.value || "").trim()];
+    })
+    .filter(([label, value]) => label && value);
+}
+
 const mockSpecsByCategory = {
   NOTEBOOK: [
     ["Brand", "ACER"],
@@ -133,10 +175,16 @@ export default function ProductDetail({ cart, setCart }) {
 
   const specs = useMemo(() => {
     if (!product) return [];
+
+    const customSpecs = normalizeProductSpecs(product.specs);
+    if (customSpecs.length) {
+      return customSpecs;
+    }
+
     return mockSpecsByCategory[product.category] || [
       ["Brand", product.brand || "-"],
       ["Category", product.category || "-"],
-      ["Price", `฿${Number(product.price || 0).toLocaleString()}`],
+      ["Price", `\u0E3F${Number(product.price || 0).toLocaleString()}`],
       ["Stock", String(product.stock ?? 0)],
     ];
   }, [product]);
@@ -195,21 +243,21 @@ export default function ProductDetail({ cart, setCart }) {
       <section className="detail-top-card">
         <div className="detail-gallery">
           <div className="detail-main-image">
-            {product.imageUrl ? (
-              <img src={product.imageUrl} alt={product.name} />
-            ) : (
-              <div className="detail-image-placeholder">IMG</div>
-            )}
+            <SafeProductImage
+              imageUrl={product.imageUrl}
+              alt={product.name}
+              placeholderClassName="detail-image-placeholder"
+            />
           </div>
 
           <div className="detail-thumbs">
             {[1, 2, 3].map((n) => (
               <div key={n} className="detail-thumb">
-                {product.imageUrl ? (
-                  <img src={product.imageUrl} alt={`${product.name}-${n}`} />
-                ) : (
-                  <div className="detail-thumb-placeholder">IMG</div>
-                )}
+                <SafeProductImage
+                  imageUrl={product.imageUrl}
+                  alt={`${product.name}-${n}`}
+                  placeholderClassName="detail-thumb-placeholder"
+                />
               </div>
             ))}
           </div>
@@ -329,11 +377,11 @@ export default function ProductDetail({ cart, setCart }) {
           {relatedProducts.map((item) => (
             <Link to={`/products/${item.id}`} key={item.id} className="related-card">
               <div className="related-image">
-                {item.imageUrl ? (
-                  <img src={item.imageUrl} alt={item.name} />
-                ) : (
-                  <div className="detail-thumb-placeholder">IMG</div>
-                )}
+                <SafeProductImage
+                  imageUrl={item.imageUrl}
+                  alt={item.name}
+                  placeholderClassName="detail-thumb-placeholder"
+                />
               </div>
 
               <div className="related-name">{item.name}</div>
@@ -349,3 +397,4 @@ export default function ProductDetail({ cart, setCart }) {
     </div>
   );
 }
+

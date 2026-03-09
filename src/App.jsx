@@ -1,4 +1,4 @@
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { loadCart, saveCart } from "./cartStore";
 
@@ -16,27 +16,26 @@ import Favorites from "./pages/Favorites";
 import StaffProducts from "./pages/StaffProducts";
 import StaffEditProduct from "./pages/StaffEditProduct";
 import StaffEmployees from "./pages/StaffEmployees";
+import StaffCustomers from "./pages/StaffCustomers";
+import StaffAccountDeletions from "./pages/StaffAccountDeletions";
 
-import { getToken, clearToken } from "./authStore";
+import { getTokenRole } from "./authStore";
 
 export default function App() {
   const [cart, setCart] = useState(loadCart());
-  const [isLoggedIn, setIsLoggedIn] = useState(!!getToken());
-
-  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => saveCart(cart), [cart]);
 
-  useEffect(() => {
-    setIsLoggedIn(!!getToken());
-  }, []);
+  const role = getTokenRole();
+  const isStaffSession = role === "staff";
+  const isStaffPath = location.pathname.startsWith("/staff");
 
-  const cartCount = cart.reduce((s, x) => s + x.qty, 0);
-
-  function handleLogout() {
-    clearToken();
-    setIsLoggedIn(false);
-    navigate("/login");
+  if (isStaffSession && !isStaffPath) {
+    return <Navigate to="/staff/products" replace />;
+  }
+  if (!isStaffSession && isStaffPath) {
+    return <Navigate to="/login" replace />;
   }
 
   return (
@@ -55,6 +54,8 @@ export default function App() {
           <Route path="/addresses" element={<ShippingAddresses cart={cart} />} />
           <Route path="/staff/products" element={<StaffProducts />} />
           <Route path="/staff/employees" element={<StaffEmployees />} />
+          <Route path="/staff/customers" element={<StaffCustomers />} />
+          <Route path="/staff/account-deletions" element={<StaffAccountDeletions />} />
           <Route path="/staff/products/:id/edit" element={<StaffEditProduct />} />
         </Routes>
     </div>

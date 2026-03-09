@@ -4,6 +4,7 @@ import HomeHeader from "../components/home/HomeHeader";
 import HomeFooter from "../components/home/HomeFooter";
 import { getToken, clearToken } from "../authStore";
 import { API_BASE } from "../config";
+import { requestDeleteAccount } from "../accountDeletion";
 import "../styles/home.css";
 import "../styles/profile.css";
 
@@ -103,6 +104,10 @@ export default function Profile({ cart = [] }) {
     navigate("/login");
   }
 
+  async function handleDeleteAccount() {
+    await requestDeleteAccount({ navigate, setError });
+  }
+
   return (
     <div className="profile-page">
       <HomeHeader
@@ -131,6 +136,9 @@ export default function Profile({ cart = [] }) {
               <button type="button" className="profile-logout-link" onClick={handleLogout}>
                 ล็อกเอ้าท์
               </button>
+              <button type="button" className="profile-delete-link" onClick={handleDeleteAccount}>
+                ลบบัญชี
+              </button>
             </div>
 
             <div className="profile-content">
@@ -151,7 +159,7 @@ export default function Profile({ cart = [] }) {
 
               <div className="profile-top-grid">
                 <div className="profile-name-box">
-                  {`${me?.firstName || ""} ${me?.lastName || ""}`.trim() || me?.email || "ชื่อ - นามสกุล"}
+                  {String(me?.username || "").trim() || "-"}
                 </div>
 
                 <div className="profile-stat-card">
@@ -170,6 +178,10 @@ export default function Profile({ cart = [] }) {
 
               <div className="profile-detail-card">
                 <div className="profile-detail-col">
+                  <small>ชื่อผู้ใช้</small>
+                  <p>{me?.username || "-"}</p>
+                </div>
+                <div className="profile-detail-col">
                   <small>ชื่อ - นามสกุล</small>
                   <p>{`${me?.firstName || ""} ${me?.lastName || ""}`.trim() || "-"}</p>
                 </div>
@@ -180,10 +192,6 @@ export default function Profile({ cart = [] }) {
                 <div className="profile-detail-col">
                   <small>หมายเลขโทรศัพท์</small>
                   <p>{me?.phone || lastOrderDetail?.phone || "-"}</p>
-                </div>
-                <div className="profile-detail-col">
-                  <small>ชื่อผู้ใช้</small>
-                  <p>{me?.username || "-"}</p>
                 </div>
               </div>
             </div>

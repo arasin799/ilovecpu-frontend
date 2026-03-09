@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import HomeHeader from "../components/home/HomeHeader";
 import HomeFooter from "../components/home/HomeFooter";
 import { API_BASE } from "../config";
+import { requestDeleteAccount } from "../accountDeletion";
 import "../styles/home.css";
 import "../styles/profile.css";
 
@@ -86,6 +87,10 @@ export default function YourOrders({ cart = [] }) {
     navigate("/login");
   }
 
+  async function handleDeleteAccount() {
+    await requestDeleteAccount({ navigate, setError });
+  }
+
   return (
     <div className="profile-page">
       <HomeHeader
@@ -110,6 +115,9 @@ export default function YourOrders({ cart = [] }) {
 
             <button type="button" className="profile-logout-link" onClick={handleLogout}>
               ล็อกเอ้าท์
+            </button>
+            <button type="button" className="profile-delete-link" onClick={handleDeleteAccount}>
+              ลบบัญชี
             </button>
           </div>
 

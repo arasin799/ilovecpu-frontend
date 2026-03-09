@@ -4,6 +4,7 @@ import HomeHeader from "../components/home/HomeHeader";
 import HomeFooter from "../components/home/HomeFooter";
 import { getToken, clearToken } from "../authStore";
 import { loadAddresses, saveAddresses } from "../addressStore";
+import { requestDeleteAccount } from "../accountDeletion";
 import "../styles/home.css";
 import "../styles/profile.css";
 
@@ -44,6 +45,10 @@ export default function ShippingAddresses({ cart = [] }) {
   function handleLogout() {
     clearToken();
     navigate("/login");
+  }
+
+  async function handleDeleteAccount() {
+    await requestDeleteAccount({ navigate });
   }
 
   function addAddress() {
@@ -116,6 +121,9 @@ export default function ShippingAddresses({ cart = [] }) {
 
             <button type="button" className="profile-logout-link" onClick={handleLogout}>
               ล็อกเอ้าท์
+            </button>
+            <button type="button" className="profile-delete-link" onClick={handleDeleteAccount}>
+              ลบบัญชี
             </button>
           </div>
 

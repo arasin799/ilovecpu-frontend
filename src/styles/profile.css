@@ -22,8 +22,14 @@
 
 .profile-side-column {
   display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 8px;
   align-content: start;
+  align-items: center;
+}
+
+.profile-side-card {
+  grid-column: 1 / -1;
 }
 
 .profile-side-card h3,
@@ -86,6 +92,24 @@
 
 .profile-logout-link:hover {
   color: #6f6f6f;
+  background: transparent;
+}
+
+.profile-delete-link {
+  justify-self: end;
+  padding: 0 15px;
+  border-radius: 0;
+  border: none;
+  background: transparent;
+  color: #c62828;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.profile-delete-link:hover {
+  color: #a61f1f;
   background: transparent;
 }
 

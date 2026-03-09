@@ -4,6 +4,7 @@ import HomeHeader from "../components/home/HomeHeader";
 import HomeFooter from "../components/home/HomeFooter";
 import { clearToken, getToken, setToken } from "../authStore";
 import { API_BASE } from "../config";
+import { requestDeleteAccount } from "../accountDeletion";
 import "../styles/home.css";
 import "../styles/profile.css";
 
@@ -126,6 +127,10 @@ export default function EditProfile({ cart = [] }) {
     navigate("/login");
   }
 
+  async function handleDeleteAccount() {
+    await requestDeleteAccount({ navigate, setError });
+  }
+
   return (
     <div className="profile-page">
       <HomeHeader
@@ -150,6 +155,9 @@ export default function EditProfile({ cart = [] }) {
 
             <button type="button" className="profile-logout-link" onClick={handleLogout}>
               ล็อกเอ้าท์
+            </button>
+            <button type="button" className="profile-delete-link" onClick={handleDeleteAccount}>
+              ลบบัญชี
             </button>
           </div>
 

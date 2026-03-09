@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+﻿import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_BASE } from "../config";
 import { clearToken, getToken } from "../authStore";
@@ -154,11 +154,33 @@ export default function StaffProducts() {
           <p>เพิ่มสินค้า ลบสินค้า และตรวจสอบจำนวนสินค้า</p>
         </div>
         <div className="staff-topbar-actions">
-          <button type="button" className="staff-secondary-btn" onClick={() => navigate("/staff/employees")}>
-            ข้อมูลพนักงาน
+          <button
+            type="button"
+            className="staff-secondary-btn staff-topbar-nav-btn is-active"
+            onClick={() => navigate("/staff/products")}
+          >
+            สินค้า
           </button>
-          <button type="button" className="staff-danger-btn" onClick={logoutStaff}>
-            ล็อกเอาต์
+          <button
+            type="button"
+            className="staff-secondary-btn staff-topbar-nav-btn"
+            onClick={() => navigate("/staff/employees")}
+          >
+            พนักงาน
+          </button>
+          <button
+            type="button"
+            className="staff-secondary-btn staff-topbar-nav-btn"
+            onClick={() => navigate("/staff/customers")}
+          >
+            ลูกค้า
+          </button>
+          <button
+            type="button"
+            className="staff-danger-btn staff-topbar-nav-btn"
+            onClick={logoutStaff}
+          >
+            ล็อกเอ้าท์
           </button>
         </div>
       </header>
